@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mind Oasis">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Mind Oasis - Your Mental Wellness Companion" />
+    <meta
+      name="description"
+      content="Mind Oasis provides AI-powered mental health support, mood tracking, meditation guides, and wellness resources. Take control of your mental wellbeing today."
+    />
+    <meta name="keywords" content="mental health, wellness, AI chatbot, meditation, mood tracking, therapy, self-care, mindfulness" />
+    <meta name="author" content="Mind Oasis Team" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mindoasis.app/" />
+    <meta property="og:title" content="Mind Oasis - Your Mental Wellness Companion" />
+    <meta property="og:description" content="AI-powered mental health support, mood tracking, and wellness resources for your mental wellbeing journey." />
+    <meta property="og:image" content="%PUBLIC_URL%/social-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://mindoasis.app/" />
+    <meta property="twitter:title" content="Mind Oasis - Your Mental Wellness Companion" />
+    <meta property="twitter:description" content="AI-powered mental health support, mood tracking, and wellness resources for your mental wellbeing journey." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/social-preview.png" />
+
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Mind Oasis",
+      "description": "AI-powered mental health support and wellness platform",
+      "url": "https://mindoasis.app",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web Browser",
+      "permissions": "microphone, camera",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Mind Oasis Team"
+      }
+    }
+    </script>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Safari Pinned Tab -->
+    <link rel="mask-icon" href="%PUBLIC_URL%/safari-pinned-tab.svg" color="#000000">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" as="image" href="%PUBLIC_URL%/logo.svg">
+    
+    <title>Mind Oasis - Your Mental Wellness Companion</title>
+    
+    <style>
+      /* Critical CSS for initial loading */
+      body {
+        margin: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #ffffff;
+        color: #000000;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      
+      body.dark-mode {
+        background-color: #000000;
+        color: #ffffff;
+      }
+      
+      /* Loading screen styles */
+      #initial-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      
+      .loading-logo {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+        animation: pulse 2s infinite;
+      }
+      
+      .loading-text {
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+      
+      .loading-subtext {
+        color: #888;
+        font-size: 14px;
+      }
+      
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #333;
+        border-top: 4px solid #ffffff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.05); opacity: 0.8; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      
+      /* Hide loading screen when app loads */
+      #initial-loading.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      /* System UI font stack as fallback */
+      @supports (font: -apple-system-body) {
+        body {
+          font: -apple-system-body;
+        }
+      }
+    </style>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+      
+      // Performance monitoring
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+          gtag('event', 'timing_complete', {
+            name: 'load',
+            value: loadTime,
+            event_category: 'Load Time'
+          });
+        }, 0);
+      });
+    </script>
+
+    <!-- Error Boundary Script -->
+    <script>
+      window.addEventListener('error', function(e) {
+        gtag('event', 'exception', {
+          description: e.error?.message || 'Unknown error',
+          fatal: true
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Initial Loading Screen -->
+    <div id="initial-loading">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Mind Oasis</div>
+      <div class="loading-subtext">Loading your wellness journey...</div>
+    </div>
+
+    <noscript>
+      <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+        <h1>JavaScript Required</h1>
+        <p>You need to enable JavaScript to run Mind Oasis.</p>
+        <p>This application provides AI-powered mental health support and requires JavaScript for full functionality.</p>
+        <p>Please enable JavaScript in your browser settings and refresh the page.</p>
+      </div>
+    </noscript>
+    
+    <div id="root"></div>
+
+    <!-- Service Worker Registration -->
+    <script>
+      // Register service worker for PWA functionality
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('%PUBLIC_URL%/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+
+      // Hide loading screen when React app mounts
+      window.addEventListener('DOMContentLoaded', function() {
+        const loadingElement = document.getElementById('initial-loading');
+        if (loadingElement) {
+          // Wait for React to fully load
+          setTimeout(() => {
+            loadingElement.classList.add('hidden');
+            setTimeout(() => {
+              loadingElement.remove();
+            }, 500);
+          }, 1000);
+        }
+      });
+
+      // Dark mode detection
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+      if (prefersDarkScheme.matches) {
+        document.body.classList.add('dark-mode');
+      }
+
+      // Listen for theme changes
+      prefersDarkScheme.addEventListener('change', e => {
+        if (e.matches) {
+          document.body.classList.add('dark-mode');
+        } else {
+          document.body.classList.remove('dark-mode');
+        }
+      });
+
+      // Performance monitoring
+      const observer = new PerformanceObserver((list) => {
+        list.getEntries().forEach((entry) => {
+          if (entry.entryType === 'largest-contentful-paint') {
+            gtag('event', 'largest_contentful_paint', {
+              value: Math.round(entry.startTime),
+              event_category: 'Performance'
+            });
+          }
+        });
+      });
+      observer.observe({entryTypes: ['largest-contentful-paint']});
+
+      // Offline detection
+      window.addEventListener('online', function() {
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'online', {
+            event_category: 'Connectivity'
+          });
+        }
+      });
+
+      window.addEventListener('offline', function() {
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'offline', {
+            event_category: 'Connectivity'
+          });
+        }
+      });
+    </script>
+
+    <!-- Fallback for older browsers -->
+    <script>
+      // Check for modern JavaScript features
+      const features = [
+        'Promise',
+        'fetch',
+        'IntersectionObserver',
+        'URLSearchParams'
+      ];
+
+      const missingFeatures = features.filter(feature => !window[feature]);
+      
+      if (missingFeatures.length > 0) {
+        document.getElementById('root').innerHTML = `
+          <div style="padding: 40px; text-align: center; font-family: Arial, sans-serif;">
+            <h2>Browser Update Required</h2>
+            <p>Your browser is missing some modern features required by Mind Oasis.</p>
+            <p>Please update to a modern browser like Chrome, Firefox, Safari, or Edge.</p>
+            <p>Missing features: ${missingFeatures.join(', ')}</p>
+          </div>
+        `;
+      }
+    </script>
+  </body>
+</html>

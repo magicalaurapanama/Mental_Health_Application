@@ -1,0 +1,102 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.chat-container {
+  width: 350px;
+  height: 500px;
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chat-header {
+  background: #4a90e2;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  padding: 10px 14px;
+  border-radius: 18px;
+  max-width: 70%;
+  line-height: 1.4;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: #4a90e2;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.message.bot {
+  align-self: flex-start;
+  background: #e5e5e5;
+  color: #333;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-footer {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-bottom-left-radius: 12px;
+  outline: none;
+  font-size: 14px;
+}
+
+.chat-footer button {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  border-bottom-right-radius: 12px;
+  font-size: 14px;
+}
+
+.chat-footer button:hover {
+  background: #357abd;
+}
+/* Add this to Chatbot.css */
+.chat-header {
+  /* ... existing styles ... */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
